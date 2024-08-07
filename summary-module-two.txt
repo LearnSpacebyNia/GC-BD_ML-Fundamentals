@@ -6,3 +6,6 @@ Tanggung jawab utama seorang data engineers adalah membuat sebuah pipelines data
 	velocity : data harus diproses dengan cepat dalam waktu yang hampir mendekati real-time.
 	veracity : kualitas data yang disimpan harus terjamin dalam bentuk yang konsisten dan rapi.
 	sehingga tahapan ini mempelajari pembuatan jalur data (pipelines) untuk menampung data secara scalable dan reliable.
+
+
+test baru
