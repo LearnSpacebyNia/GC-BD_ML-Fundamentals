@@ -1,8 +1,0 @@
-Big Data Challenges,
-Tanggung jawab utama seorang data engineers adalah membuat sebuah pipelines data work-flow yang scalable dan reliable.
-Tantangan dari ini dikenal sebagai 4Vs, variety, volume, velocity, dan veracity.
-variety : data datang dari berberbagi sumber dan format, yg artinya pipelines harus dapat mengatur data tersebut disimpan secara baik dan tidak duplikat.
-volume : disebabkan data yang sangat banyak tersebut, pipelines harus dapat menampungnya sebesar apapun data yang masuk.
-velocity : data harus diproses dengan cepat dalam waktu yang hampir mendekati real-time.
-veracity : kualitas data yang disimpan harus terjamin dalam bentuk yang konsisten dan rapi.
-sehingga tahapan ini mempelajari pembuatan jalur data (pipelines) untuk menampung data secara scalable dan reliable.
