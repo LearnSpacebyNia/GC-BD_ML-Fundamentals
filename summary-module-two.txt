@@ -8,4 +8,3 @@ Tanggung jawab utama seorang data engineers adalah membuat sebuah pipelines data
 	sehingga tahapan ini mempelajari pembuatan jalur data (pipelines) untuk menampung data secara scalable dan reliable.
 
 
-test baru
