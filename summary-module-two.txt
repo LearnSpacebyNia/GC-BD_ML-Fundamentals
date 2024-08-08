@@ -8,4 +8,37 @@ Tanggung jawab utama seorang data engineers adalah membuat sebuah pipelines data
 	sehingga tahapan ini mempelajari pembuatan jalur data (pipelines) untuk menampung data secara scalable dan reliable.
 
 
-test baru
+Message-oriented architetcure
+Pub/Sub : menerima pesan dari berbagai alat stream (pengumpul data), IoT (publisher) - pelanggan yang memakai data atau pesan tadi, analtik tools (subscriber), 
+
+data streaming : data real time (topik) dari sistem (publisher) ke sistem lain (subscriber)
+
+langkah streaming data
+data - masuk ke pub/sub (kontak pertama dengan sistem), read, store, dan broadcast - pipeline (transform) - output (BigQuery) - visualisasikan - monitoring
+
+Designing stream pipeline
+DataFlow : salah satu produk Google Cloud untuk membuat pipeline baik stream data (real-time data) atau batch data.
+	- melakukan proses ETL, extract, transform and load
+
+batch data : metode pemrosesan data dalam blok besar atau "batch" yang dikumpulkan selama periode waktu tertentu.
+
+Apache Beam : open source untuk pembuatan pipeline, termasuk proses ETL, batch, dan stream proses.
+
+Implementing streaming pipeline on Cloud DataFlow
+apache beam = membuat pipelines untuk pemprosesan data, membutugkan engine untuk eksekusi proses?
+solution : DataFlow from Google cloud, mengeksekusi apache beam pipeline dalam cloud.
+
+DataFlow : No Ops and Serverless, tidak membutuh management team and bisa akses secara cloud
+
+Langkah: 
+- apache Beam
+- DataFlow : using template is one of solution to create the pipeline process
+	benefit and done by datadflow:
+	o graph optimazion
+	o work scheduler  : memberikan tugas kepada workers
+	o auto scaler	
+	o auto healing
+	o work rebalancing
+	o compute & storage	: mengkomputasi dan simpan data dalam bucket
+- bigQuery 
+- looker and looker studio
