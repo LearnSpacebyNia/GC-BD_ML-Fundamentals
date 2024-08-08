@@ -1,0 +1,61 @@
+Creating a Streaming Data Pipeline for a Real-Time Dashboard with Dataflow
+data yang digunakan diekstrak dari 'https://data.cityofnewyork.us/'
+langkah-langkah :
+( saya menggunakan kredit dalam latihan)
+1. login ke google console
+
+2. Activate Google Cloud Shell : untuk connect ke environment project
+	- gcloud auth list
+	- gcloud config list project
+
+3. membuat bigquery dataset : untuk menampung atau queri data yang akan dianlisis
+The BigQuery Console UI : dari console bigquery
+- dalam goole cloud consule, navigation menu, bigquery
+- klik view action disamping project id, create dataset
+- namakan dataset, taxirides
+- pilih region data, create dataset
+- dalam dataset taxirides, klik view action, create table, namai realtime
+- buat schema, edit as text, 
+ride_id:string,
+point_idx:integer,
+latitude:float,
+longitude:float,
+timestamp:timestamp,
+meter_reading:float,
+meter_increment:float,
+ride_status:string,
+passenger_count:integer
+- klik partition and cluster setting, pilih timestamp, klik create table
+
+4. Copy required lab artifacts : 
+	copy bahan atau data yang akan dimasukkan ke dalam google cloud. 	disini data sudah tersedia dalam bucket storage, google cloud. 
+	copy data dan pindahkan ke bucket yang diperintahkan
+- buka cloud shell, jalanka perintah ini untuk memindahkan files yang diperlukan di dataflow
+gcloud storage cp gs://cloud-training/bdml/taxisrcdata/schema.json  gs://Project_ID-bucket/tmp/schema.json
+## command dari gcloud storge, copy files 'schema.json' dalam bucket 'gs://cloud-training/' ke bucket 'gs://Project_ID-bucket/tmp' dengan nama file yang sama 
+gcloud storage cp gs://cloud-training/bdml/taxisrcdata/transform.js  gs://Project_ID-bucket/tmp/transform.js
+gcloud storage cp gs://cloud-training/bdml/taxisrcdata/rt_taxidata.csv  gs://Project_ID-bucket/tmp/rt_taxidata.csv
+
+5. Set up a Dataflow Pipeline : proses ini membuat pipelines untuk membaca file dari storage ke bigquery
+- Restart the connection to the Dataflow API : memastikan dataflow api bersih dan siap digunakan.
+gcloud services disable dataflow.googleapis.com
+gcloud services enable dataflow.googleapis.com
+- Create a new streaming pipeline
+	o ke naviagition menu, pilih dataflow
+	o klik Create Job From Template
+	o namai dataflow job dengan streaming-taxi-pipeline
+	o pilih regional endpoint
+	o pada dataflow template, pilih Cloud Storage Text to Bigquery (Stream) template under Process Data Continuously (stream)
+	o pada the GCS location of the text you'd like to process, paste gs://Project_ID-bucket/tmp/rt_taxidata.csv . ini adalah files bucket yang telah dicopy tadi
+	o pada GCS location of your BigQuery schema file, described as a JSON,, paste Project_ID-bucket/tmp/schema.json . ini adalah files bucket yang telah dicopy tadi
+	o pada Output table to write to, paste Project_ID:taxirides.realtime (projek_name:dataset_name.table_name). ini adalah tempat output keluar (table dalam biqquery)  dari proses pipelines.
+	o pada GCS path to javascript fn for transforming output, paste gs://Project_ID-bucket/tmp/transform.js . ini adalah files bucket yang telah dicopy tadi  
+	o pada UDF JavaScript function name, paste: transform
+	o pada Temporary directory for BigQuery loading process, paste : Project_ID-bucket/tmp
+	o klik optional parameters
+	o pada max-wokers tulis 2
+	o pada number of workers tulis 1
+	o uncheck Use default machine type
+	o pada genral purpose pilih Series: E2, Machine type: e2-medium (2 vCPU, 4 GB memory)
+	o klik Run Job
+
