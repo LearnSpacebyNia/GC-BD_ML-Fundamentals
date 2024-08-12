@@ -1,0 +1,45 @@
+Introduction
+step ML-workflow
+
+- data (streaming data)-pub/sub-dataflow-bigQuery-BI tools or AI/ML tools
+- data (batch data)-pub/sub-dataflow-bigQuery-BI tools or AI/ML tools
+
+bigQuery services : storage and analytic
+data di bigquery bisa didapatkan dari :
+- internal storage
+- eksternal storage : cloud storage, cloud spanner, atau cloud SQL
+- multi cloud : google cloud prodcut, AWS, Azure
+- public dataset
+
+data yang beragam dari berbagai source dapat diatasi dengan penggunaan dataflow sebelum dieksekusi di bigquery
+
+bigquery ML
+services bigQuery untuk ML/AI lifecycle:
+- kemampuan untuk membangun model ML
+- fase project ML
+- command ML di SQL bigquery
+
+dua langkah untuk memulai pemodelan dengan bigquery:
+- buat model dengan statement SQL
+- tulis SQL prediction query dengan ml.PREDICT 
+
+ bigQuery dapat menjalani supervised dan unsupervised model
+
+bigQuery terdapat fitur yang disebut ML Ops, meliputu deploy, manage, dan monitor model 
+
+
+the goal is : to identify high-value customers and bring the customers 
+to our store with special promotion and incentives
+
+ML digunakan untuk menemukan secara otomatis setiap pola atau hubungan dalam data yang tersedia
+
+Bigquery ML : 
+- automatically one-hot-encoding untuk categorical nilai
+- automatically split dataset dalam training dan evalution data
+
+fase dalam machine learning:
+1. ETL data ke dalam bigQuery
+2. pilih dan lakukan proses fituring
+3. membuat model di dalam bigquery
+4. evalution peformance trained model
+5. gunakan model untuk prediksi data baru
