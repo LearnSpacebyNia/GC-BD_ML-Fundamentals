@@ -43,3 +43,34 @@ fase dalam machine learning:
 3. membuat model di dalam bigquery
 4. evalution peformance trained model
 5. gunakan model untuk prediksi data baru
+
+membuat model command dalam bigQuery
+'''
+CREATE MODEL
+ecommerce.classification
+
+OPTIONS
+(
+    model_type='logistic_reg',
+    input_label_cols = ['will_buy_later']
+) AS traing_data
+'''
+
+mengevaluasi ML MODEL
+'''
+SELECT
+    roc_auc,
+    accuracy,
+    precision,
+    recall
+FROM
+    ML.EVALUATE(MODEL `ecommerce.classification`)
+'''
+
+melakukan prediksi menggunakan model
+'''
+SELECT * FROM
+    ML.PREDICT (MODEL `ecommerce.classification`)
+'''
+
+
