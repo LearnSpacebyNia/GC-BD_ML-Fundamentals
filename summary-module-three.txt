@@ -53,7 +53,10 @@ OPTIONS
 (
     model_type='logistic_reg',
     input_label_cols = ['will_buy_later']
-) AS traing_data
+    ls_init_learn_rate = .15
+    l1_reg = 1
+    max_iteration = 5
+) AS training_data
 '''
 
 mengevaluasi ML MODEL
@@ -73,4 +76,61 @@ SELECT * FROM
     ML.PREDICT (MODEL `ecommerce.classification`)
 '''
 
+inspeksi ML_WEIGHTS
+'''
+SELECT 
+    category, weight
+FROM UNNEST (( 
+    SELECT 
+        category_weights
+    FROM 
+        ML.WEIGHITS(MODEL 'bracktology.ncca_model')
+    WHERE
+        processed_input = "seed"
+))
+    like 'school_ncca'
+    ORDER BY weight DESC
+'''
 
+untuk membuat batch prediction
+'''
+CREATE OR REPLACE TABLE `bracktology.prediction` AS (
+    SELECT * FROM ML.PREDICT (MODEL `bracktology.ncca_model`,
+    # prediksi data untuk tahun 2018 (tahun tertentu)
+    (SELECT * FROM `data-to-insight.ncca.2018_tournament_results`)
+    )
+)
+'''
+
+- untuk menentukan kolom label, tulis nama kolom sebagai 'label' atau spefikasi dengan options 'input_label_cols'
+- kolom data yang digunakan adalah kolom yang tetulis setelah SELECT command.
+'''
+SELECT * FROM ML.FEATURE_INFO(MODEL `mydataset.mymodel`)
+'''
+
+membuat model
+'''
+CREATE OR REPLACE MODEL <dataset>.<name>
+OPTIONS(model_type='<>') AS 
+<training datasets>
+'''
+
+untuk melihat progress training
+'''
+SELECT * FROM ML.TRAINING_INFO(MODEL `mydataset.mymodel`)
+'''
+
+untuk melihat wieght atau bobot kolom atau fitur yang berpengaruh terhadap label kolom
+'''
+SELECT * FROM ML.WEIGHITS(MODEL `mydataset.mymodel`, (<query>))
+'''
+
+untuk evaluasi
+'''
+SELECT * FROM ML.EVALUATE(MODEL `mydataset.mymodel`, (<query>))
+'''
+
+untuk prediction
+'''
+SELECT * FROM ML.PREDICT(MODEL `mydataset.mymodel`, (<query>))
+'''
