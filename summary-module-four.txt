@@ -1,0 +1,37 @@
+Machine Learning Options
+objectives:
+- options to build ML models
+- bagaiamana vertex AI dapat menyelesaikan ML challenges
+
+Options to Build ML Models yang disediakan oleh google :
+1. BigQuery ML     : menggunakan SQL query untuk mengeksekusi ml models di bigQuery
+2. Pre-built APIs  : meningkatkan model Ml ydengan model yang telah ditrain di google, memakai model pre-define
+3. AutoML          : sebuah solusi no-code untuk membangun model di Vertex AI
+4. Custom training : menyesuaikan model serta enviromental untuk pembangunan modle ML
+
+
+
+Pre-built APIs, cocok untuk kondisi kekurangan data dan not likely expertise ML engineer
+short list jasa model yang telah dilayani google :
+- speech to text API
+- cloud natural languange  API, mengingat bagian speech yang dijenal sebagai entities and sentiment
+- cloud translation API, mengubah text ke beragam bahasa lainnya
+- text to specch API,
+- vision API, 
+- video intelligence API, mengingat motion and action dalam video
+
+AutoML :
+- transfer learning, prebuilt model yang disesuaikan dengan kondisi data atau tujuan model
+- neural architercture search (NAS), untuk menemukan optimal model yang relevan dengan project yang akan diselesaikan.
+pada autoML NAS melakukan train dan evalute model berkali-kali
+
+Auto ML support berbagai tipe data, image (classification dan object detection), tabular (prediksi-regresi, classification, ramalan), text (classification, ) dan video.
+cara mengakses auto Ml bisa dari cloud storage, bigquery atau lokal machine
+
+pada auto ML mengggunakan data yang dipilih engineer (own data) untuk lanjutkan pada proses traiing model 
+
+Custom training on vertex AI workbench, 
+vertex AI workbench adalah lingkungan terintegrasi untuk pengembangan, pelatihan, dan implementasi model machine learning (ML).
+sebelum coding dimulai, harus menentukan environment ML apa yang akan digunakan, sehingga nantinya berpengaruh pada penentuan cointainer yang akan digunakan, apakah pre-built cointainer atau custom cointainer.
+
+pre-built termasuk platfroms, tensorflow, pytorch, scikit-learn, xgboost, python code.
