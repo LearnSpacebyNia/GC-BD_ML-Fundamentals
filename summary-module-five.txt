@@ -1,0 +1,46 @@
+
+learning rate : hyperparamter untuk mengatur kecepatan model untuk melangkah memperbaiki eror
+
+BigQuery --> define hyperparameter
+custom training --> define hyperparameter
+AutoML --> automatic tuning
+
+Vertex's evalution metrics : 
+confusion matrix --> recall, precision
+TP : Postive predicted, True predicted, positive actual
+TN : Negative predicted, True predicted, negative actual
+FP : Postive predicted, False predicted, negative actual, type 1 error
+FN : Negative predicted, False predicted, positive actual, type 2 error
+
+recall : diantara semua positive cases, berapa banyak yang terprediksi secara benar. TP/(TP+FN)
+precision : diantara semua cases yang TERDETEKSI positive, berapa banyak yang terprediksi secara benar. TP/(TP+FP)
+
+fetaure importance --> 
+
+MLOps = ML deployment 
+model deployment : ada tiga type
+1. endpoint : paling best untuk mengimplementasi result langusng dengan kebutuhan depedensi yang rendah. misal, buat rekomendasri instant untuk users bedasarkan habit mereka ketika online atau menggunakan internet.
+2. batch prediction : cocok untuk result hasil prediksi yang tidak memutuhkan hasil cepat karena melalui beberapa persyaran atau daya yang harus diproses terlebih dahulu.
+3. offline prediction : model yang harus di deploy pada environment non-cloud.
+
+Model monitoring
+Pada vertex AI, ada tools yang bisa digunakan untuk monitoring, yaitu Vertex AI Pipelines. disini bisa melakukan automate, monitor, and govern data.
+
+pada vertex AI workbench, yaitu notebook di vertex, dapat membuat pipeline sendiri dengan prebuilt pipeline components, yaitu bagaimana membuat pipeline menggunakan struktur bangunan yang sudah ada.
+
+TP + FN = 100%
+FP + TN = 100%
+
+Note:
+semakin ketat kita menetapkan batasan (tinggi treshold), semakin akurat kita dalam menandai spam (precision naik), tetapi kita mungkin akan kehilangan beberapa spam (recall turun). Sebaliknya, jika kita lebih longgar (rendah treshold), kita mungkin menangkap lebih banyak spam (recall naik), tetapi bisa salah dalam menandai email yang bukan spam sebagai spam (precision turun).
+
+RECALL --> FN
+PRECISION --> FP
+
+misal : 
+batasan = 0, maka semua email adalah spam. tidak ada FN. padahal mungkin saja ada yang diaggap spam yang sebenarnya tidak spam  (FP). sehingga precision menjadi sangat rendah dan recall menjadi 100. 
+batasan = 1, maka email yang sudah yakin 100% sebagai spam ditandai sebagai spam. padahal mungkin saja ada yang dianggap tidak spam yang sebenarnya spam  (FN). sehingga recall menjadi sangat rendah (yg sebenarnya spam tidak banyak) dan precision menjadi 100. 
+
+
+
+
